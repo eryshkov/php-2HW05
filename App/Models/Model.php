@@ -132,6 +132,7 @@ abstract class Model
 
     /**
      * @return bool
+     * @throws \App\Exceptions\DbErrorException
      */
     public function save(): bool
     {
