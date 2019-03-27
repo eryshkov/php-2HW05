@@ -7,7 +7,7 @@ abstract class ExceptionModel extends \Exception
     /**
      * ExceptionModel constructor.
      * @param string $message
-     * @param string $code
+     * @param int $code
      * @param \Exception $previous
      */
     public function __construct(string $message = '', int $code = 0, \Exception $previous = null)
