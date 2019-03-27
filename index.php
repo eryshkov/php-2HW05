@@ -8,6 +8,6 @@ try {
     $ctrl->setParameters($router->getParameters());
     $ctrl->action();
 } catch (Throwable $e) {
-    $ctrl = new \App\Controllers\MyError();
+    $ctrl = new \App\Controllers\SmthWrong();
     $ctrl->action();
 }

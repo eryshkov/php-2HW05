@@ -1,3 +1,8 @@
+<?php
+/**
+ * @var \App\View $this
+ */
+?>
 <!doctype html>
 <html lang="ru">
 <head>
@@ -18,13 +23,19 @@
             <a href="/admin" class="btn btn-outline-success">Админ-Новости</a>
         </div>
     </div>
-    <div class="row">
-        <div class="col-auto">
-            <div class="alert alert-danger" role="alert">
-                Что-то пошло не так
+    <?php
+    if (isset($this->info)) {
+        ?>
+        <div class="row">
+            <div class="col-auto">
+                <div class="alert alert-danger" role="alert">
+                    <?php echo $this->info; ?>
+                </div>
             </div>
         </div>
-    </div>
+        <?php
+    }
+    ?>
     <div class="row">
         <div class="col">
             <a href="/">Вернуться на главную</a>
