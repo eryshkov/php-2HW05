@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use App\Db;
+use App\Exceptions\RecordNotFoundException;
 
 abstract class Model
 {
@@ -42,7 +43,12 @@ abstract class Model
             return reset($result);
         }
 
-        return false;
+        try {
+            return false;
+        } catch (\Exception $e) {
+        } finally {
+            throw new RecordNotFoundException();
+        }
     }
 
     /**

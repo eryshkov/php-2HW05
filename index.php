@@ -7,7 +7,14 @@ try {
     $ctrl = new $ctrlClass;
     $ctrl->setParameters($router->getParameters());
     $ctrl->action();
-} catch (Throwable $e) {
-    $ctrl = new \App\Controllers\SmthWrong();
+} catch (\App\Exceptions\DbException $e) {
+    $ctrl = new \App\Controllers\Errors\SmthWrong();
+    $ctrl->action();
+} catch (\App\Exceptions\FileNotExistException $e) {
+    $ctrl = new \App\Controllers\Errors\Error404();
+    $ctrl->action();
+} catch (\App\Exceptions\RecordNotFoundException $e) {
+    $ctrl = new \App\Controllers\Errors\RecNotFound();
     $ctrl->action();
 }
+
