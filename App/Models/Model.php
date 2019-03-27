@@ -125,9 +125,7 @@ abstract class Model
             $errors->add(new FillErrorException($key . ' is not found'));
         }
 
-        if (!$errors->isEmpty()) {
-            throw $errors;
-        }
+        throw $errors;
     }
 
     /**
