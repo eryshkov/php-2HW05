@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 
 use App\Models\Article;
 
@@ -10,6 +10,7 @@ assert($article instanceof Article);
 assert($id === $article->id);
 
 $id = '80';
+/** @noinspection PhpUnhandledExceptionInspection */
 $article = Article::findById($id);
 assert(is_bool($article));
 assert(false === $article);

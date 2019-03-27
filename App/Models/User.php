@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Db;
-
 class User extends Model
 {
     /**

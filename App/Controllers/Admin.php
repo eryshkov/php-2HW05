@@ -4,6 +4,9 @@ namespace App\Controllers;
 
 class Admin extends Controller
 {
+    /**
+     * @throws \App\Exceptions\DbErrorException
+     */
     protected function handle(): void
     {
         $this->view->articles = \App\Models\Article::getAllLast();

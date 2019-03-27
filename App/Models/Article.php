@@ -2,8 +2,6 @@
 
 namespace App\Models;
 
-use App\Db;
-
 /**
  * Class Article
  * @property Author author
@@ -19,10 +17,12 @@ class Article extends Model
      * @var string
      */
     public $title;
+
     /**
      * @var string
      */
     public $content;
+
     /**
      * @var int
      */
@@ -31,6 +31,8 @@ class Article extends Model
     /**
      * @param $name
      * @return Author|null
+     * @throws \App\Exceptions\DbErrorException
+     * @throws \App\Exceptions\RecordNotFoundException
      */
     public function __get($name)
     {
@@ -65,5 +67,7 @@ class Article extends Model
         if ('author' === $name) {
             return isset($this->author_id);
         }
+
+        return false;
     }
 }
