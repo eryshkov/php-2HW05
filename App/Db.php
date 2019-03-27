@@ -25,7 +25,7 @@ class Db
             $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\Exception $e) {
-            throw new DbErrorException($e);
+            throw new DbErrorException();
         }
     }
 
@@ -48,7 +48,7 @@ class Db
             }
             return $data;
         } catch (\Exception $e) {
-            throw new DbErrorException($e);
+            throw new DbErrorException();
         }
     }
 
@@ -64,7 +64,7 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\Exception $e) {
-            throw new DbErrorException($e);
+            throw new DbErrorException();
         }
     }
 

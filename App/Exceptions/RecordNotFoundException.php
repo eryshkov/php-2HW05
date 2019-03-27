@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-class RecordNotFoundException extends \Exception
+class RecordNotFoundException extends ExceptionModel
 {
-
 }

@@ -2,7 +2,7 @@
 
 namespace App\Exceptions;
 
-class Errors extends \Exception
+class Errors extends ExceptionModel
 {
     /**
      * @var \Exception[]

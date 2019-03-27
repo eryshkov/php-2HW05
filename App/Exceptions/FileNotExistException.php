@@ -2,7 +2,6 @@
 
 namespace App\Exceptions;
 
-class FileNotExistException extends \Exception
+class FileNotExistException extends ExceptionModel
 {
-
 }
