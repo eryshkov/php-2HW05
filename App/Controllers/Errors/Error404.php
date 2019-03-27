@@ -8,7 +8,7 @@ class Error404 extends Controller
 {
     protected function handle(): void
     {
-        $this->view->info = 'Страница не найдена';
+        $this->view->info = 'Ошибка 404. Страница не найдена';
         $this->view->display(__DIR__ . '/../../../templates/error.php');
     }
 }
