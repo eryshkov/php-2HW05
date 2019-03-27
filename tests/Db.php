@@ -1,4 +1,4 @@
-<?php
+<?php /** @noinspection ALL */
 require __DIR__ . '/../autoload.php';
 
 use App\Db;

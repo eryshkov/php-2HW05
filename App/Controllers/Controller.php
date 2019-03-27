@@ -2,6 +2,9 @@
 
 namespace App\Controllers;
 
+use App\Exceptions\DbErrorException;
+use App\Exceptions\FileNotExistException;
+use App\Exceptions\RecordNotFoundException;
 use App\View;
 
 abstract class Controller

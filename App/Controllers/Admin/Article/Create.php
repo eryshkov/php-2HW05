@@ -6,6 +6,9 @@ use App\Controllers\Controller;
 
 class Create extends Controller
 {
+    /**
+     * @throws \App\Exceptions\DbErrorException
+     */
     protected function handle(): void
     {
         if (isset($_POST['title'], $_POST['content'])) {

@@ -6,6 +6,10 @@ use App\Controllers\Controller;
 
 class Update extends Controller
 {
+    /**
+     * @throws \App\Exceptions\DbErrorException
+     * @throws \App\Exceptions\RecordNotFoundException
+     */
     protected function handle(): void
     {
         if (isset($_POST['title'], $_POST['content'], $_POST['id'])) {

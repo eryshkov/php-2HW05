@@ -1,4 +1,8 @@
 <?php
+/**
+ * @var \App\Controllers\Controller $ctrl
+ */
+
 require __DIR__ . '/autoload.php';
 
 try {

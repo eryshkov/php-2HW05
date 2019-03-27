@@ -6,6 +6,10 @@ use App\Controllers\Controller;
 
 class Delete extends Controller
 {
+    /**
+     * @throws \App\Exceptions\DbErrorException
+     * @throws \App\Exceptions\RecordNotFoundException
+     */
     protected function handle(): void
     {
         $parameter = $this->getParameters();

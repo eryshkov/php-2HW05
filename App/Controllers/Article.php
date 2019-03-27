@@ -4,6 +4,10 @@ namespace App\Controllers;
 
 class Article extends Controller
 {
+    /**
+     * @throws \App\Exceptions\DbErrorException
+     * @throws \App\Exceptions\RecordNotFoundException
+     */
     protected function handle(): void
     {
         $parameter = $this->getParameters();
