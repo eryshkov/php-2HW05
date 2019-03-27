@@ -47,21 +47,6 @@
             </div>
         </div>
         <?php
-    } else {
-        ?>
-        <div class="row">
-            <div class="col-auto">
-                <div class="alert alert-danger" role="alert">
-                    Новость не найдена
-                </div>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col">
-                <a href="/">Вернуться на главную</a>
-            </div>
-        </div>
-        <?php
     } ?>
 </div>
 </body>
