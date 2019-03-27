@@ -3,6 +3,9 @@
 namespace App\Models;
 
 use App\Db;
+use App\Exceptions\DbErrorException;
+use App\Exceptions\Errors;
+use App\Exceptions\FillErrorException;
 use App\Exceptions\RecordNotFoundException;
 
 abstract class Model
@@ -19,7 +22,7 @@ abstract class Model
 
     /**
      * @return array
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public static function findAll(): array
     {
@@ -33,7 +36,7 @@ abstract class Model
      * @param int $id
      * @return bool|static
      * @throws RecordNotFoundException
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public static function findById(int $id)
     {
@@ -57,7 +60,7 @@ abstract class Model
     /**
      * @param int|null $limit
      * @return array
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public static function getAllLast(int $limit = null): array
     {
@@ -74,7 +77,7 @@ abstract class Model
 
     /**
      * @return bool
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public function insert(): bool
     {
@@ -103,8 +106,33 @@ abstract class Model
     }
 
     /**
+     * @param array $data
+     * @throws Errors
+     */
+    public function fill(array $data): void
+    {
+        $props = get_object_vars($this);
+        $difference = array_diff_key($props, $data);
+        if (empty($difference)) {
+            foreach ($props as $key => $value) {
+                $this->$key = $data[$key];
+            }
+            return;
+        }
+
+        $errors = new Errors();
+        foreach ($difference as $key => $value) {
+            $errors->add(new FillErrorException($key . ' is not found'));
+        }
+
+        if (!$errors->isEmpty()) {
+            throw $errors;
+        }
+    }
+
+    /**
      * @return bool
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public function update(): bool
     {
@@ -132,7 +160,7 @@ abstract class Model
 
     /**
      * @return bool
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public function save(): bool
     {
@@ -145,7 +173,7 @@ abstract class Model
 
     /**
      * @return bool
-     * @throws \App\Exceptions\DbErrorException
+     * @throws DbErrorException
      */
     public function delete(): bool
     {

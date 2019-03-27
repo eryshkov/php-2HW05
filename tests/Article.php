@@ -1,5 +1,7 @@
 <?php /** @noinspection ALL */
 
+use App\Exceptions\DbErrorException;
+use App\Exceptions\RecordNotFoundException;
 use App\Models\Article;
 
 require __DIR__ . '/../autoload.php';
@@ -10,10 +12,12 @@ assert($article instanceof Article);
 assert($id === $article->id);
 
 $id = '80';
-/** @noinspection PhpUnhandledExceptionInspection */
-$article = Article::findById($id);
-assert(is_bool($article));
-assert(false === $article);
+try {
+    $article = Article::findById($id);
+    assert(is_bool($article));
+    assert(false === $article);
+} catch (DbErrorException | RecordNotFoundException $e) {
+}
 
 $limit = 3;
 $articles = Article::getAllLast($limit);
@@ -26,6 +30,23 @@ $article = Article::findById(3);
 $author = $article->author;
 assert($author instanceof \App\Models\Author);
 
-$article = Article::findById(80);
-assert(false === $article);
+try {
+    $article = Article::findById(80);
+    assert(false === $article);
+} catch (DbErrorException | RecordNotFoundException $e) {
+}
 
+$article = Article::findById(1);
+$arr = [
+    'title' => 'Test title',
+    'content' => 'Test content',
+    'author_id' => 1,
+    'id' => 1,
+];
+try {
+    $article->fill($arr);
+} catch (\App\Exceptions\Errors $e) {
+    foreach ($e->getAll() as $exception) {
+        echo $exception->getMessage();
+    }
+}
