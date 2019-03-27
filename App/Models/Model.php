@@ -19,6 +19,7 @@ abstract class Model
 
     /**
      * @return array
+     * @throws \App\Exceptions\DbErrorException
      */
     public static function findAll(): array
     {
@@ -31,6 +32,8 @@ abstract class Model
     /**
      * @param int $id
      * @return bool|static
+     * @throws RecordNotFoundException
+     * @throws \App\Exceptions\DbErrorException
      */
     public static function findById(int $id)
     {
@@ -54,6 +57,7 @@ abstract class Model
     /**
      * @param int|null $limit
      * @return array
+     * @throws \App\Exceptions\DbErrorException
      */
     public static function getAllLast(int $limit = null): array
     {
@@ -70,6 +74,7 @@ abstract class Model
 
     /**
      * @return bool
+     * @throws \App\Exceptions\DbErrorException
      */
     public function insert(): bool
     {
@@ -99,6 +104,7 @@ abstract class Model
 
     /**
      * @return bool
+     * @throws \App\Exceptions\DbErrorException
      */
     public function update(): bool
     {
@@ -138,6 +144,7 @@ abstract class Model
 
     /**
      * @return bool
+     * @throws \App\Exceptions\DbErrorException
      */
     public function delete(): bool
     {

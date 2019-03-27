@@ -2,7 +2,7 @@
 
 namespace App;
 
-use App\Exceptions\DbException;
+use App\Exceptions\DbErrorException;
 
 class Db
 {
@@ -13,7 +13,7 @@ class Db
 
     /**
      * Db constructor.
-     * @throws DbException
+     * @throws DbErrorException
      */
     public function __construct()
     {
@@ -25,7 +25,7 @@ class Db
             $this->dbh->setAttribute(\PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC);
             $this->dbh->setAttribute(\PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION);
         } catch (\Exception $e) {
-            throw new DbException($e);
+            throw new DbErrorException($e);
         }
     }
 
@@ -34,7 +34,7 @@ class Db
      * @param array $params
      * @param null $class
      * @return array
-     * @throws DbException
+     * @throws DbErrorException
      */
     public function query(string $sql, array $params = [], $class = null): array
     {
@@ -48,7 +48,7 @@ class Db
             }
             return $data;
         } catch (\Exception $e) {
-            throw new DbException($e);
+            throw new DbErrorException($e);
         }
     }
 
@@ -56,7 +56,7 @@ class Db
      * @param string $sql
      * @param array $params
      * @return bool
-     * @throws DbException
+     * @throws DbErrorException
      */
     public function execute(string $sql, array $params = []): bool
     {
@@ -64,7 +64,7 @@ class Db
             $sth = $this->dbh->prepare($sql);
             return $sth->execute($params);
         } catch (\Exception $e) {
-            throw new DbException($e);
+            throw new DbErrorException($e);
         }
     }
 

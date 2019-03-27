@@ -7,7 +7,7 @@ try {
     $ctrl = new $ctrlClass;
     $ctrl->setParameters($router->getParameters());
     $ctrl->action();
-} catch (\App\Exceptions\DbException $e) {
+} catch (\App\Exceptions\DbErrorException $e) {
     $ctrl = new \App\Controllers\Errors\SmthWrong();
     $ctrl->action();
 } catch (\App\Exceptions\FileNotExistException $e) {

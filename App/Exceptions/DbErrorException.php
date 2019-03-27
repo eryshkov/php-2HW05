@@ -2,9 +2,8 @@
 
 namespace App\Exceptions;
 
-class DbException extends \Exception
+class DbErrorException extends \Exception
 {
-
     /**
      * DbException constructor.
      * @param \Exception|null $exception
