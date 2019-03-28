@@ -9,6 +9,7 @@ $result = [
         'userName' => 'eug',
         'password' => '123',
     ],
+    'log' => __DIR__ . '/log.txt',
 ];
 
 return $result;

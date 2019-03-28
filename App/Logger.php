@@ -4,10 +4,11 @@ namespace App;
 
 class Logger
 {
-    protected $storage = __DIR__ . '/../log.txt';
-
-    public function add(\Exception $data): void
+    public static function add(\Exception $data): void
     {
+        $config = require __DIR__ . '/../config.php';
+        $storage = $config['log'];
+
         $date = date(DATE_ATOM);
         $logString = [
             $date,
@@ -16,6 +17,6 @@ class Logger
             get_class($data),
         ];
 
-        file_put_contents($this->storage, implode(' | ', $logString) . PHP_EOL, FILE_APPEND);
+        file_put_contents($storage, implode(' | ', $logString) . PHP_EOL, FILE_APPEND);
     }
 }

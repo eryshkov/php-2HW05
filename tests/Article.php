@@ -34,7 +34,6 @@ try {
     $article = Article::findById(80);
     assert(false === $article);
 } catch (DbErrorException | RecordNotFoundException $e) {
-    var_dump($e);
 }
 
 $article = Article::findById(1);
