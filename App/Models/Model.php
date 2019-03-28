@@ -53,7 +53,7 @@ abstract class Model
             return false;
         } catch (\Exception $e) {
         } finally {
-            throw new RecordNotFoundException();
+            throw new RecordNotFoundException($sql . ' (:id => ' . $id . ')');
         }
     }
 

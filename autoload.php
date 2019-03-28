@@ -11,7 +11,7 @@ function autoload($class)
     if (file_exists($fullFilePath)) {
         require $fullFilePath;
     } else {
-        throw new \App\Exceptions\FileNotExistException();
+        throw new \App\Exceptions\FileNotExistException($fullFilePath);
     }
 }
 

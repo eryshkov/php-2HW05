@@ -1,6 +1,2 @@
-2019-03-28T12:00:24+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException
-2019-03-28T12:00:24+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException
-2019-03-28T12:08:40+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException
-2019-03-28T12:08:40+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException
-2019-03-28T12:08:45+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/autoload.php | 14 | App\Exceptions\FileNotExistException
-2019-03-28T12:08:53+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException
+2019-03-28T12:23:14+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Models/Model.php | 56 | App\Exceptions\RecordNotFoundException | SELECT * FROM news WHERE id=:id (:id => 43)
+2019-03-28T12:24:13+03:00 | /Users/eugem/Developer/PHP/php-2HW05.mac/autoload.php | 14 | App\Exceptions\FileNotExistException | /Users/eugem/Developer/PHP/php-2HW05.mac/App/Controllers/Articlegh.php
