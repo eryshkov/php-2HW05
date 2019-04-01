@@ -12,12 +12,11 @@ try {
     $ctrl->setParameters($router->getParameters());
     $ctrl->action();
 } catch (\App\Exceptions\DbErrorException $e) {
+    \App\Logger::log($e);
     $ctrl = new \App\Controllers\Errors\SmthWrong();
     $ctrl->action();
-} catch (\App\Exceptions\FileNotExistException $e) {
-    $ctrl = new \App\Controllers\Errors\Error404();
-    $ctrl->action();
 } catch (\App\Exceptions\RecordNotFoundException $e) {
+    \App\Logger::log($e);
     $ctrl = new \App\Controllers\Errors\RecNotFound();
     $ctrl->action();
 }
