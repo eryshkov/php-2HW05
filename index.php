@@ -3,6 +3,8 @@
  * @var \App\Controllers\Controller $ctrl
  */
 
+use App\Logger;
+
 require __DIR__ . '/autoload.php';
 
 try {
@@ -12,11 +14,11 @@ try {
     $ctrl->setParameters($router->getParameters());
     $ctrl->action();
 } catch (\App\Exceptions\DbErrorException $e) {
-    \App\Logger::log($e);
+    Logger::log($e);
     $ctrl = new \App\Controllers\Errors\SmthWrong();
     $ctrl->action();
 } catch (\App\Exceptions\RecordNotFoundException $e) {
-    \App\Logger::log($e);
+    Logger::log($e);
     $ctrl = new \App\Controllers\Errors\RecNotFound();
     $ctrl->action();
 }

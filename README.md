@@ -14,7 +14,6 @@
 * для задачи №1 было создано исключение`DbErrorException.php`
 * для задачи №3 было создано исключение `RecordNotFoundException`
 * проверка метода fill() задачи №4 реализована в `tests/Article.php`
-* в файле `autoload.php` бросается исключение `FileNotExistException` в случае, если файл с искомым классом не существует
 * дамп БД в папке `db_dump`
 * применена дополнительная настройка web-сервера nginx:
  <img src="/screens/nginx.png" width="50%">
