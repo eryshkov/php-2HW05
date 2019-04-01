@@ -15,6 +15,6 @@ abstract class ExceptionModel extends \Exception
     public function __construct(string $message = '', int $code = 0, \Exception $previous = null)
     {
         parent::__construct($message, $code, $previous);
-        Logger::add($this);
+        Logger::log($this);
     }
 }
