@@ -14,12 +14,12 @@ abstract class Model
      * @var string
      */
     protected static $table = '';
-
+    
     /**
      * @var int
      */
     public $id;
-
+    
     /**
      * @return array
      * @throws DbErrorException
@@ -28,10 +28,10 @@ abstract class Model
     {
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::$table;
-
+        
         return $db->query($sql, [], static::class);
     }
-
+    
     /**
      * @param int $id
      * @return bool|static
@@ -42,13 +42,13 @@ abstract class Model
     {
         $db = new Db();
         $sql = 'SELECT * FROM ' . static::$table . ' WHERE id=:id';
-
+        
         $result = $db->query($sql, [':id' => $id], static::class);
-
+        
         if (!empty($result)) {
             return reset($result);
         }
-
+        
         try {
             return false;
         } catch (\Exception $e) {
@@ -56,7 +56,7 @@ abstract class Model
             throw new RecordNotFoundException($sql . ' (:id => ' . $id . ')');
         }
     }
-
+    
     /**
      * @param int|null $limit
      * @return array
@@ -65,16 +65,16 @@ abstract class Model
     public static function getAllLast(int $limit = null): array
     {
         $db = new Db();
-
+        
         if (isset($limit)) {
             $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC LIMIT ' . $limit;
         } else {
             $sql = 'SELECT * FROM ' . static::$table . ' ORDER BY id DESC';
         }
-
+        
         return $db->query($sql, [], static::class);
     }
-
+    
     /**
      * @return bool
      * @throws DbErrorException
@@ -83,7 +83,7 @@ abstract class Model
     {
         $db = new Db();
         $props = get_object_vars($this);
-
+        
         $fields = [];
         $binds = [];
         $data = [];
@@ -91,20 +91,20 @@ abstract class Model
             if ('id' === $name) {
                 continue;
             }
-
+            
             $fields[] = $name;
             $binds[] = ':' . $name;
             $data[':' . $name] = $value;
         }
-
+        
         $sql = 'INSERT INTO ' . static::$table . ' (' . implode(', ', $fields) . ') VALUES (' . implode(', ', $binds) . ')';
-
+        
         $result = $db->execute($sql, $data);
         $this->id = $db->lastInsertId();
-
+        
         return $result;
     }
-
+    
     /**
      * @param array $data
      * @throws Errors
@@ -119,15 +119,15 @@ abstract class Model
             }
             return;
         }
-
+        
         $errors = new Errors();
         foreach ($difference as $key => $value) {
             $errors->add(new FillErrorException($key . ' is not found'));
         }
-
+        
         throw $errors;
     }
-
+    
     /**
      * @return bool
      * @throws DbErrorException
@@ -137,10 +137,10 @@ abstract class Model
         if (!isset($this->id)) {
             return false;
         }
-
+        
         $db = new Db();
         $props = get_object_vars($this);
-
+        
         $fields = [];
         $data = [];
         foreach ($props as $name => $value) {
@@ -150,12 +150,12 @@ abstract class Model
             }
             $fields[] = $name . '=:' . $name;
         }
-
+        
         $sql = 'UPDATE ' . static::$table . ' SET ' . implode(', ', $fields) . ' WHERE id=:id';
-
+        
         return $db->execute($sql, $data);
     }
-
+    
     /**
      * @return bool
      * @throws DbErrorException
@@ -165,10 +165,10 @@ abstract class Model
         if (isset($this->id)) {
             return $this->update();
         }
-
+        
         return $this->insert();
     }
-
+    
     /**
      * @return bool
      * @throws DbErrorException
@@ -178,7 +178,7 @@ abstract class Model
         if (!isset($this->id)) {
             return false;
         }
-
+        
         $db = new Db();
         $sql = 'DELETE FROM ' . static::$table . ' WHERE id=:id';
         return $db->execute($sql, [':id' => $this->id]);
