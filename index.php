@@ -22,4 +22,3 @@ try {
     $ctrl = new \App\Controllers\Errors\RecNotFound();
     $ctrl->action();
 }
-
