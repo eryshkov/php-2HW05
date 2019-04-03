@@ -21,7 +21,7 @@ try {
     Logger::log($e);
     $ctrl = new \App\Controllers\Errors\RecNotFound();
     $ctrl->action();
-} catch (\App\Exceptions\Errors $e) {
+} catch (Throwable $e) {
     $ctrl = new \App\Controllers\Errors\SmthWrong();
     $ctrl->action();
 }
