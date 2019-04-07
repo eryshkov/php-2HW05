@@ -38,8 +38,8 @@ try {
 
 $article = Article::findById(1);
 $arr = [
-    'title'     => 'Test title',
-    'content'   => 'Test content',
+    'title'   => 'Test title',
+    'content' => 'Test content',
 ];
 try {
     $article->fill($arr);
