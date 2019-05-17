@@ -1,27 +1,33 @@
 <?php
 /**
- * @var \App\Controllers\BaseController $ctrl
+ * @var BaseController $ctrl
  */
 
+use App\Controllers\BaseController;
+use App\Controllers\Errors\RecNotFound;
+use App\Controllers\Errors\SmthWrong;
+use App\Exceptions\DbErrorException;
+use App\Exceptions\RecordNotFoundException;
 use App\Logger;
+use App\Router;
 
 require __DIR__ . '/autoload.php';
 
 try {
-    $router = new \App\Router();
-    $ctrlClass = $router->getControllerName();
+    $ctrlClass = (new Router())->getControllerName();
+    
+    /** @var BaseController $ctrl */
     $ctrl = new $ctrlClass;
-    $ctrl->setParameters($router->getParameters());
     $ctrl->action();
-} catch (\App\Exceptions\DbErrorException $e) {
+} catch (DbErrorException $e) {
     Logger::log($e);
-    $ctrl = new \App\Controllers\Errors\SmthWrong();
+    $ctrl = new SmthWrong();
     $ctrl->action();
-} catch (\App\Exceptions\RecordNotFoundException $e) {
+} catch (RecordNotFoundException $e) {
     Logger::log($e);
-    $ctrl = new \App\Controllers\Errors\RecNotFound();
+    $ctrl = new RecNotFound();
     $ctrl->action();
 } catch (Throwable $e) {
-    $ctrl = new \App\Controllers\Errors\SmthWrong();
+    $ctrl = new SmthWrong();
     $ctrl->action();
 }
