@@ -11,4 +11,5 @@ CREATE TABLE users (
 ALTER TABLE users
   ADD PRIMARY KEY (id);
 
-INSERT INTO php2hw05.users (email, password) VALUES ('test@test.com', '1234');
+INSERT INTO php2hw05.users (email, password)
+VALUES ('test@test.com', '1234');

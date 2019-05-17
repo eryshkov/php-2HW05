@@ -1,7 +1,7 @@
 <?php
 
 $result = [
-    'db'  => [
+    'db'     => [
         'driver'   => 'mysql',
         'host'     => 'php-2hw05.mac',
         'port'     => '8889',
@@ -9,7 +9,7 @@ $result = [
         'userName' => 'eug',
         'password' => '123',
     ],
-    'log' => __DIR__ . '/log.txt',
+    'log'    => __DIR__ . '/log.txt',
     'routes' => [
         '/article/{id}'              => \App\Controllers\Article::class,
         '/admin/article/add'         => \App\Controllers\Admin\Article\InsertPresenter::class,
