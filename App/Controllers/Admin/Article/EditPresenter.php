@@ -4,7 +4,7 @@ namespace App\Controllers\Admin\Article;
 
 use App\Controllers\BaseController;
 
-class Edit extends BaseController
+class EditPresenter extends BaseController
 {
     /**
      * @throws \App\Exceptions\DbErrorException
