@@ -118,7 +118,7 @@ abstract class Model
                 $errors->add(new FillErrorException($propertyName . ' is not found'));
             }
             
-            $validateMethodName = sprintf('validate%sField', ucfirst($propertyName));
+            $validateMethodName = 'validate' . ucfirst($propertyName);
             if (method_exists($this, $validateMethodName)) {
                 try {
                     $this->$validateMethodName($value);
