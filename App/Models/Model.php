@@ -111,11 +111,20 @@ abstract class Model
     public function fill(array $data): void
     {
         $errors = new Errors();
-        foreach ($data as $key => $value) {
-            if (property_exists($this, $key)) {
-                $this->$key = $value;
+        foreach ($data as $propertyName => $value) {
+            if (property_exists($this, $propertyName)) {
+                $this->$propertyName = $value;
             } else {
-                $errors->add(new FillErrorException($key . ' is not found'));
+                $errors->add(new FillErrorException($propertyName . ' is not found'));
+            }
+            
+            $validateMethodName = sprintf('validate%sField', ucfirst($propertyName));
+            if (method_exists($this, $validateMethodName)) {
+                try {
+                    $this->$validateMethodName($value);
+                } catch (\Exception $exception) {
+                    $errors->add($exception);
+                }
             }
         }
         
