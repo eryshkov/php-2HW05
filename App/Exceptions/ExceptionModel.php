@@ -2,6 +2,6 @@
 
 namespace App\Exceptions;
 
-abstract class ExceptionModel extends \Exception
+abstract class BaseException extends \Exception
 {
 }
